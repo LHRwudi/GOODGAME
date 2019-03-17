@@ -1,11 +1,7 @@
 '''尽人事，听天命'''
-from flask_sqlalchemy import SQLAlchemy
-from flask import Flask
-import config
 from datetime import datetime
-app = Flask(__name__)
-app.config.from_object(config.config_dict['config'])
-db = SQLAlchemy(app)
+from apps import db,app
+
 
 #父类
 class Base(object):
@@ -28,7 +24,7 @@ table_user_news = db.Table('user_collection',
 
 
 
-class USer(Base,db.Model):
+class User(Base,db.Model):
     __tablename__ = 'user'
     id = db.Column(db.Integer,primary_key=True)
     nick_name = db.Column(db.String(20),index=True)
@@ -87,7 +83,4 @@ def qwe():
     return '少年郎ojbk了'
 
 
-if __name__ == '__main__':
-    db.drop_all()
-    db.create_all()
-    app.run()
+#
